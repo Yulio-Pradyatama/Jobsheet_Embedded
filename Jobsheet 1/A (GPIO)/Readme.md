@@ -28,18 +28,17 @@ Percobaan ini ditujukan agar dapat memahami penggunaan pin GPIO pada ESP32. Terd
 
 ![Job 1A_2](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/f2d83b66-ab0b-4652-923e-cf0927875a22)
 
-Program ini dibuat untuk mengatur kedipan LED setiap 1 detik. Pengendalian LED dilakukan menggunakan fungsi `millis()` yang merupakan metode non-blocking/asinkron. Metode asinkron akan terus dijalankan dan tidak terpaku pada program utama (berjalan terpisah). Beberapa variabel yang digunakan meliputi:
+Program ini dibuat untuk menghasilkan lampu LED berkedip setiap 1 detik.Untuk mengatur kedipan LED memerlukan penggunaan variabel yang membuat tindakan yang terkait dengan waktu, seperti:
 
-- `ledPin`: Menentukan pin yang terhubung ke Output (LED) (GPIO 5).
-- `ledState`: Variabel yang mengindikasikan keadaan LED (HIGH atau LOW).
-- `previousMillis`: Menyimpan waktu terakhir (LED) berubah keadaan.
-- `interval`: Menyimpan interval waktu (dalam milidetik) untuk kedipan LED (1000 ms atau 1 detik).
+- 'currentMillis':menampilkan waktu yang telah berlalu sejak program dijalankan.
+- 'previousMillis':menyimpan waktu kondisi terakhir.
+- 'interval' :mengatur interval waktu kedipan LED.
 
-Pada bagian setup(), `ledPin` diatur sebagai OUTPUT dengan menggunakan pinMode(), memberi tahu Arduino bahwa pin tersebut akan mengendalikan LED. Pada loop(), pertama-tama nilai `currentMillis` diperoleh menggunakan millis(), yang mencatat waktu sejak Arduino dinyalakan. Program kemudian memeriksa apakah selisih waktu antara `currentMillis` dan `previousMillis` lebih besar atau sama dengan `interval` (1 detik). Ini berfungsi sebagai mekanisme waktu untuk mengubah keadaan LED. Jika selisih waktu sudah mencapai atau melebihi interval, maka `previousMillis` diperbarui dengan `currentMillis`. Selanjutnya, program memeriksa keadaan `ledState`. Jika `ledState` adalah LOW (mati), maka akan diubah menjadi HIGH (nyala), dan sebaliknya. Terakhir, menggunakan digitalWrite(), LED akan diatur sesuai dengan nilai `ledState`, menciptakan efek kedipan LED dengan interval 1 detik.
+perintah 'millis' mencatat waktu sejak program dijalankan, kemudian program akan membandingkan selisih waktu sekarang ('currentMillis') dengan waktu terakhir ('previousMillis') dan jika hasil selisihnya lebih besar atau bahkan sama dengan nilai interval yang ditentukan (1 detik), maka perintah pada kondisi if akan dijalankan dan nilai variabel 'previousMillis' diupdate dengan waktu sekarang ('currentMillis').
 
 **Kesimpulan**
 
-Program ini berfungsi menghasilkan efek berkedip pada LED setiap 1 detik dengan menggunakan fungsi millis() untuk menghindari ketergantungan atau sinkronisasi waktu (blocking), sehingga cocok digunakan sebagai timer untuk program LED berkedip.
+Program ini menggunakan variabel dengan fungsi 'millis()' dan variabel 'interval' yang digunakan untuk membuat tindakan yang terkait dengan waktu, sehingga dapat menghasilkan LED berkedip setiap 1 detik.
 
 ## 2. Membuat Blink LED saat penekanan button
 **Alat dan Bahan**
