@@ -97,21 +97,15 @@ Program ini akan bekerja saat ada penekanan pada tombol button yang akan memberi
 
 ![Job 1A_4](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/3ec1ab7c-023f-425a-a32d-bdd115286f46)
 
-Program ini merupakan lanjutan dari percobaan sebelumnya, dimana terdapat tambahan 1 buah LED dan 1 buah push button. Untuk itu kita harus memulai dengan mendeklarasikan pin GPIO untuk dua push button (`buttonPin1` dan `buttonPin2`) serta dua LED (`ledPin1` dan `ledPin2`).
+Program ini menggunakan 2 button dan 2 LED, dimana button sebagai variabel input (`buttonPin1` dan `buttonPin2`) dan LED sebagai variabel output (`ledPin1` Kuning dan `ledPin2` Merah). Program ini menghasilkan keluaran 3 kondisi, dimana:
 
-Dalam fungsi `setup()`, pin-pin diatur sesuai dengan fungsinya, yaitu push button sebagai input dan LED sebagai output.
+- `buttonState1` sama dengan HIGH (ada penekanan) akan memberikan tindakan untuk menyalakan kedua LED secara bersamaan.
+- `buttonState2` sama dengan HIGH (ada penekanan) akan memberikan tindakan untuk menyalakan LED secara bergantian atau secara `blink` dengan interval menyala setiap 0,5 detik yang diatur dari variabel `delay`.
+- Kedua button tidak ada penekanan, kedua LED akan memiliki nilai LOW atau mati.
 
-Dalam fungsi `loop()`, status dari kedua push button dibaca dan dicetak ke Serial Monitor. Selanjutnya, terdapat sebuah fungsi yang mengatur perilaku LED berdasarkan status push button:
+*Kesimpulan**
 
-   - Jika `buttonState2` (status dari push button kedua) adalah HIGH, maka LED akan berkedip bergantian dengan interval 0.5 sekon atau 500 ms.
-   - Jika `buttonState1` (status dari push button pertama) adalah HIGH, maka kedua LED akan menyala bersamaan.
-   - Jika keduanya tidak ditekan, kedua LED dimatikan.
-
-Program ini secara umum memahami input dari push button dan mengendalikan LED sesuai dengan kondisi push button tersebut. 
-
-**Kesimpulan**
-
-Program ini berfungsi menghasilkan efek LED berkedip hanya ketika button ke-2 ditekan, dan hanya menyalakan (tidak berkedip) kedua LED ketika button ke-1 ditekan. Selain itu, kondisi dari setiap button juga tercatat pada serial monitor.
+Program ini menghasilkan keluaran kedua LED menyala bersamaan saat button ke 1 ditekan dan menghasilkan LED menyala secara bergantian atau blink saat button ke 2 ditekan.
 
 ## 4. Membuat Running LED saat penekanan button
 **Alat dan Bahan**
@@ -138,20 +132,12 @@ Program ini berfungsi menghasilkan efek LED berkedip hanya ketika button ke-2 di
 
 ![Job 1A_5](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/dba1458c-f8e8-429f-a66c-c3fba2d6dd6d)
 
-Running LED merupakan beberapa lampu LED yang menyala bergantian dengan rapi (kiri ke kanan atau sebaliknya), maka setidaknya dibutuhkan 3 lampu LED untuk menerapkannya. Sama seperti sebelumnya, kita hanya menambahkan satu buah push button sekali lagi dan juga setidaknya 1 buah LED. Agar program kita terlihat lebih efisien, kita bisa menggunakan function `for()`. `For()` merupakan suatu fungsi berupa proses pengulangan tugas/kegiatan pada suatu statement atau lebih secara berulang ulang-ulang selama yang dijadikan acuan tersebut terpenuhi dengan baik.
-
-Setelah itu kita deklarasikan beberapa pin GPIO untuk push button (`buttonPin1`, `buttonPin2`, dan `buttonPin3`) dan LED (`ledPin1`, `ledPin2`, dan `ledPin3`).
-
-Berbeda dari sebelumnya yang langsung menggunakan digitalWrite(HIGH dan LOW) pada LED PIN, kali ini kita memanfaatkann fungsi for untuk mengulang programnya. Untuk itu kita harus membuat sebuah array bernama `pinLED` yang nantinya digunakan untuk menyimpan pin dari tiga LED. Kita hanya memasukkan saja nomor pin dari semua `pinLED` ke array tersebut secara urut (karena saya menginginkan LED menyala dari kiri ke kanan, maka disini saya mengurutkan dari ledPin1 hingga ledPin 3), setelah itu kita outputkan menggunakan fungsi `for()`.
-
-Dalam fungsi `setup()`, pin-pin diatur sesuai dengan fungsinya, yaitu push button sebagai input dan LED sebagai output. Sedangkan fungsi `for()` saya gunakan untuk mengatur semua isi array `pinLED` menjadi output.
-
-Dalam fungsi `loop()`, status dari ketiga push button dibaca dan dicetak ke Serial Monitor. Selanjutnya, terdapat kondisional yang mengatur perilaku LED berdasarkan status push button:
-
-   - Jika `buttonState1` (status dari push button pertama) adalah HIGH, maka ketiga LED akan menyala bersamaan.
-   - Jika `buttonState2` (status dari push button kedua) adalah HIGH, maka LED 1 dan LED 2 akan berkedip bergantian dengan interval waktu 500 ms.
-   - Jika `buttonState3` (status dari push button ketiga) adalah HIGH, maka ketiga LED akan berkedip secara bergantian. Masing-masing LED akan menyala dan mati dengan interval waktu 500 ms yang dijalankan menggunakan `for()`.
+Program ini menggunakan 3 variabel input dan 3 variabel output, dimana variabel input (`buttonPin1`, `buttonPin2`, dan `buttonPin3`) dan untuk variabel output (`ledPin1`, `ledPin2`, dan `ledPin3`).Program ini menghasilkan keluaran 4 kondisi:
+- LED menyala secara bersamaan, kondisi dimana saat `buttonState1` bernilai HIGH (button 1 ditekan).
+- LED 1 dan 2 menyala secara blink dengan interval 0,5 detik, kondisi saat `buttonState2` bernilai HIGH (button 2 ditekan).
+- LED menyala secara bergantian dengan interval 0,5 detik, kondisi saat `buttonState3` bernilai HIGH (button 3 ditekan).Pada kondisi ini memerlukan fungsi `loop()` yang berguna mengulang program yang di dalamnya terdapat variabel `pinLED` sebagai array untuk `ledPin1` sampai `ledPin3`.
+- LED mati, kondisi dimana saat ketiga button tidak ditekan.
 
 **Kesimpulan**
 
-Program ini menunjukkan implementasi yang baik dalam mengendalikan beberapa LED dengan beberapa push button. Ketika push button pertama ditekan, ketiga LED akan menyala secara bersamaan. Jika push button kedua ditekan, LED pertama akan menyala, kemudian mati, diikuti oleh LED kedua yang menyala dan mati. Sedangkan saat push button ketiga ditekan, ketiga LED akan berkedip bergantian. Kita juga dapat memanfaatkan penggunaan fungi `for()` untuk membuat running LED.
+Program ini memiliki keluaran dimana jika button 1 ditekan akan menghasilkan LED menyala semua, jika button 2 ditekan akan menghasilkan LED 1 dan LED 2 menyala, jika button 3 ditekan akan menghasilkan LED menyala secara bergantian.
