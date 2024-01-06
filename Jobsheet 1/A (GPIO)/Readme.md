@@ -66,24 +66,11 @@ Program ini menggunakan variabel dengan fungsi `millis()` dan variabel `interval
 
 ![Job 1A_3](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/26d0fab2-db22-4e74-8843-61296125cf6d)
 
-Program dimulai dengan melakukan inisialisasi variabel input dan output:
-
-- `buttonPin` (pin 4) dan `ledPin` (pin 5) diumumkan sebagai konstanta yang menentukan pin yang akan digunakan dalam program.
-- `buttonState` merupakan variabel yang akan menyimpan status (HIGH atau LOW) dari tombol tekan.
- 
-Dalam bagian `setup()`, program memulai inisialisasi komunikasi serial dengan Serial.begin(115200), memungkinkan program berkomunikasi dengan komputer melalui Serial Monitor dengan kecepatan 115200 baud. Selanjutnya, `pinMode()` digunakan untuk mengatur `buttonPin` sebagai input (untuk membaca tombol tekan) dan `ledPin` sebagai output (untuk mengendalikan LED).
-
-Pada bagian `loop()`, program menjalankan beberapa tugas berulang kali:
-
-- `buttonState` diisi dengan nilai yang dibaca dari `buttonPin` menggunakan `digitalRead()`. Ini akan menghasilkan nilai HIGH jika tombol tekan ditekan, dan LOW jika tidak.
-- `Serial.println(buttonState)` digunakan untuk mencetak nilai `buttonState` ke Serial Monitor, memungkinkan kita melihat status tombol tekan dalam Serial Monitor.
-- Program kemudian memeriksa nilai `buttonState` dalam suatu kondisi:
-  - Jika `buttonState` bernilai HIGH (tombol tekan ditekan), maka `digitalWrite(ledPin, HIGH)` akan dijalankan untuk menyalakan LED dengan mengatur pin `ledPin` menjadi HIGH.
-  - Jika `buttonState` bernilai LOW (tombol tekan tidak ditekan), maka `digitalWrite(ledPin, LOW)` akan dijalankan untuk mematikan LED dengan mengatur pin `ledPin` menjadi LOW.
+Program ini menggunakan button sebagai variabel input dan LED sebagai variabel output. Program ini bekerja sesuai dengan nilai `buttonState` saat membaca adanya tindakan pada variabel `buttonPin` (terjadi penekanan pada button), hal itu akan membuat program menjalankan perintah pada kondisi `if()`. Jika nilai `buttonState` sama dengan HIGH (ada penekanan), maka program akan melakukan tindakan pada variabel `ledPin` (menyalakan LED) dan begitu juga sebaliknya. Nilai dari `buttonState` akan dicetak ke Serial Monitor melalui perintah `Serial.println(buttonState)`.
 
 **Kesimpulan**
 
-Program ini berfungsi menyalakan LED hanya ketika button ditekan, jadi button berfungsi sebagai saklar atau switch. Selain itu, kondisi dari button juga tercatat pada serial monitor.
+Program ini akan bekerja saat ada penekanan pada tombol button yang akan memberikan tindakan untuk menyalakan LED.
 
 ## 3. Membuat Blink LED berdurasi 500ms saat penekanan button
 **Alat dan Bahan**
