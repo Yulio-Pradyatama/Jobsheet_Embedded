@@ -30,15 +30,15 @@ Percobaan ini ditujukan agar dapat memahami penggunaan pin GPIO pada ESP32. Terd
 
 Program ini dibuat untuk menghasilkan lampu LED berkedip setiap 1 detik.Untuk mengatur kedipan LED memerlukan penggunaan variabel yang membuat tindakan yang terkait dengan waktu, seperti:
 
-- 'currentMillis':menampilkan waktu yang telah berlalu sejak program dijalankan.
-- 'previousMillis':menyimpan waktu kondisi terakhir.
-- 'interval' :mengatur interval waktu kedipan LED.
+- `currentMillis`:menampilkan waktu yang telah berlalu sejak program dijalankan.
+- `previousMillis`:menyimpan waktu kondisi terakhir.
+- `interval` :mengatur interval waktu kedipan LED.
 
-perintah 'millis' mencatat waktu sejak program dijalankan, kemudian program akan membandingkan selisih waktu sekarang ('currentMillis') dengan waktu terakhir ('previousMillis') dan jika hasil selisihnya lebih besar atau bahkan sama dengan nilai interval yang ditentukan (1 detik), maka perintah pada kondisi if akan dijalankan dan nilai variabel 'previousMillis' diupdate dengan waktu sekarang ('currentMillis').
+perintah `millis()` mencatat waktu sejak program dijalankan, kemudian program akan membandingkan selisih waktu sekarang (`currentMillis`) dengan waktu terakhir (`previousMillis`) dan jika hasil selisihnya lebih besar atau bahkan sama dengan nilai interval yang ditentukan (1 detik), maka perintah pada kondisi `if()` akan dijalankan dan nilai variabel `previousMillis` diupdate dengan waktu sekarang (`currentMillis`).
 
 **Kesimpulan**
 
-Program ini menggunakan variabel dengan fungsi 'millis()' dan variabel 'interval' yang digunakan untuk membuat tindakan yang terkait dengan waktu, sehingga dapat menghasilkan LED berkedip setiap 1 detik.
+Program ini menggunakan variabel dengan fungsi `millis()` dan variabel `interval` yang digunakan untuk membuat tindakan yang terkait dengan waktu, sehingga dapat menghasilkan LED berkedip setiap 1 detik.
 
 ## 2. Membuat Blink LED saat penekanan button
 **Alat dan Bahan**
