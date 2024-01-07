@@ -25,25 +25,25 @@ Node :
 
 ### Flowchart
 
-![Flowchart Job 6-B1](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/d4fa2680-cc36-4092-8e64-51fa32f403aa)
+![Flowchart Job 6-B1](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/edb42b17-6dd9-4d6b-98ad-a7ede2695e19)
 
 ### Hasil dan Pembahasan
-Pada percobaan ini kita akan mengirimkan nilai dari properti `humi` menggunakan protokol MQTT. Berikut adalah isi dari **inject node**:
 
-![image](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/c88389b7-2824-43a8-81bf-8a1416fee005)
+![Job 6-B1](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/5a14b906-fb17-4e3e-8549-2be14e3049dc)
 
-Untuk itu seperti pada percobaan sebelumnya, ada beberapa langkah yang harus dilakukan:
-- Mengkoneksikan node-red ke Mosquitto
-- Mengkonfigurasikan node MQTT Out dan In
-- Mengubah tipe data menjadi object menggunakan node JSON Parser
-- Mengambil nilai properti humi menggunakan dot notation pada node function
+Alur kerja dari program ini:
+- Inject Node mengirimkan pesan payload dengan type JSON (`{"temp":24,"humi":30,"light":10}`).
+- MQTT Out Node mengirimkan data suhu, kelembaban, dan intensitas cahaya ke topik "livingroom/sensors" menggunakan protokol MQTT.
+- MQTT In Node menerima data suhu, kelembaban, dan intensitas cahaya dari topik "livingroom/sensors" melalui protokol MQTT.
+- JSON Node mengkonversi payload dari format JSON ke objek JavaScript.
+- Function Node mengambil nilai kelembaban (humi) dari objek dan mengirimkannya ke Node "Debug".
+- Debug Node menampilkan nilai kelembaban pada konsol debug.
 
-Berikut adalah hasilnya:
+Program ini juga menggunakan MQTT Broker Node yang berfungsi untuk menyediakan konfigurasi yang bisa mengkoneksikan MQTT dengan broker lokal.
 
-![Job 6-B1](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/ebf54a02-2b48-4078-ac5c-9ccd3a13091b)
+**Kesimpulan**
 
-### Kesimpulan
-Protokol MQTT juga dapat digunakan untuk mengirimkan data JSON atau objek.
+Program ini menghasilkan data suhu,kelembapan, dan intensitas cahaya dari ruang tamu dan akan dikirimkan dalam bentuk objek JSON melalui MQTT.
 
 ## 2. Pengiriman 2 Topik Pesan
 ### Alat dan Bahan
@@ -69,81 +69,14 @@ Node :
 
 ### Flowchart
 
-![Flowchart Job 6-B2-C1](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/6e9f1751-e851-4d37-8642-211e7320c2cf)
+![Flowchart Job 6-B2](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/900e2e6e-d742-4910-8ba2-31c3bf3491c9)
 
 ### Hasil dan Pembahasan
-Pada percobaan ini kita akan mengirimkan 2 pesan dengan topik yang berbeda menggunakan protokol MQTT. Setiap properti dari pesan nantinya akan ditampilkan pada `debug node` yang berbeda-beda.
 
-**1. Inject Node**
-- Livingroom/sensors = berisikan data objek {"temp":24,"humi":30,"light":10}.
-- Kitchen/sensors = berisikan data objek {"flame":0,"metane":0,"temp":24,"humi":38}.
+![Job 6-B2](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/d1431df0-3cd3-4008-a2f7-d2639775e5f9)
 
-**2. Function untuk Multi-Input**
-```javascript
-var topic = msg.topic;
-if(topic == "livingroom/sensors") {
-    return [msg,null]; // jika topik pesan adalah livingroom/sensors, maka teruskan pesan ke output pertama
-}
-if(topic == "kitchen/sensors") {
-    return [null,msg]; // jika topik pesan adalah kitchen/sensors, maka teruskan pesan ke output kedua
-}
-return msg;
-```
-Karena terdapat perbedaan topik, maka hal tersebut menjadi celah atau `gap` yang dapat digunakan sebagai argumen dari fungsi `if`.
+Program ini digunakan untuk mengontrol dan memonitor data dari semua sensor yang ada di ruang tamu dan dapur dengan menghubungkannya melalui MQTT. Data dari ruang tamu dan dapur akan dipisahkan dan kemudian akan dikirimkan dan diperiksa menggunakan berbagai Function Node dan akan ditampilkan pada konsol debug.
 
-**3. Publisher dan Subscriber** : menyesuaikan topik
+**Kesimpulan**
 
-**4. JSON Parser** : terhubung ke masing-masing subscriber, memastikan agar pesan selalu berbentuk objek
-
-**5. Output Function** : digunakan untuk mengambil nilai dari properti tertentu. Karena ada 7 properti yang berbeda, maka terdapat pula 7 node function yang terhubung ke 7 output (`debug node`):
-- **Function `temp-livingroom`**
-  
-  ```javascript
-  msg.payload = msg.payload.temp; 
-  return msg;
-  ```
-- **Function `humi-livingroom`**
-  
-  ```javascript
-  msg.payload = msg.payload.humi; 
-  return msg;
-  ```
-- **Function `light-livingroom`**
-  
-  ```javascript
-  msg.payload = msg.payload.light; 
-  return msg;
-  ```
-- **Function `flame-kitchen`**
-  
-  ```javascript
-  msg.payload = msg.payload.flame; 
-  return msg;
-  ```
-- **Function `metane-kitchen`**
-  
-  ```javascript
-  msg.payload = msg.payload.metane; 
-  return msg;
-  ```
-- **Function `temp-kitchen`**
-  
-  ```javascript
-  msg.payload = msg.payload.temp; 
-  return msg;
-  ```
-- **Function `humi-kitchen`**
-  
-  ```javascript
-  msg.payload = msg.payload.humi; 
-  return msg;
-  ```
-
-Berikut adalah hasilnya:
-
-![Job 6-B2](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/c285141a-4e0e-4c32-b854-a8a3346a6a59)
-
-Meskipun terdapat properti yang sama, seperti `temp` dan `humi`, akan tetapi topik dari pesannya berbeda. Dengan begitu, nilai dari properti pesan tidak akan tertukar meskipun memiliki key atau properti yang sama dengan pesan lainnya.
-
-### Kesimpulan
-Protokol MQTT dapat mengirim data JSON dengan topik yang berbeda tanpa tertukar nilai propertinya, karena kuncinya ada pada topik pesan. Meskipun propertinya sama, asalkan topik pesan berbeda maka properti pesan tidak akan tertukar. Maka dari itu topik merupakan properti dari pesan yang krusial dalam pengiriman menggunakan protokol MQTT.
+Dengan menggunakan protokol MQTT kita juga dapat mengirimkan data dengan topik yang berbeda dan juga nilai yang berbeda tanpa khawatir tertukar nilai antar topik.
