@@ -22,30 +22,19 @@ Node :
 
 ### Flowchart
 
-![Flowchart Job 6-A](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/41ffdc36-21bf-4ca9-8949-bc274af1fd7e)
+![Flowchart Job 6-A](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/2cc09e97-134f-438e-be9d-7b89629a3658)
 
 ### Hasil dan Pembahasan
 
-![Job 6-A](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/e5e7c571-35b8-4ca6-b0e2-4e7675575968)
+![Job 6-A](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/52f8c3c7-997e-46cb-baa3-49dfffa4f35c)
 
-Node `MQTT Out` berfungsi sebagai publisher sedangkan node `MQTT In`berfungsi sebagai subscriber, dimana topik pesan yang digunakan adalah `livingroom/sensors`. Sesuai dengan prinsip Protokol MQTT, publisher dengan subscriber yang memiliki topik yang sama, akan dapat melakukan pertukaran pesan.
+Untuk menjalankan program ini, diperlukan untuk menginstal broker terlebih dahulu.Broker ini berfungsi untuk menghubungkan antara node MQTT out dan in agar memiliki topik yang sama. Alur kerja program ini:
+- Inject Node mengirimkan pesan dengan topic "livingroom/sensors" dan payload "28" (suhu ruangan).
+- MQTT Out mengirimkan data suhu ke topik "livingroom/sensors" dengan menggunakan protokol MQTT.
+- MQTT Broker Node berguna untuk menyediakan konfigurasi untuk mengkoneksikan MQTT ke broker lokal.
+- MQTT In menerima data yang dikirim dan kemudian akan menruskannya ke Debug Node.
+- Debug Node menerima data suhu dan akan menampilkannya ke konsol.
 
-Namun untuk dapat melakukan percobaan diatas, kita diharuskan menginstall broker terlebih dahulu. Jika tidak, maka node MQTT Out dan In tidak akan dapat terhubung walaupun memiliki topik yang sama. 
+**Kesimpulan**
 
-Karena software node-red yang saya gunakan terinstall di OS Ubuntu, maka cara menginstallnya adalah seperti berikut:
-```linux
-sudo add-apt-repository ppa:mosquitto-dev/mosquitto-ppa
-sudo apt install mosquitto mosquitto-clients
-```
-Untuk memastikan Mosquitto sudah berjalan atau tidak, dapat kita ketikkan **systemctl status mosquitto** pada CLI Ubuntu:
-![image](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/bb1add2b-8f1d-4f9b-8405-557c1b2a6e4e)
-
-Maka ketika kita men-deploy flow node-red kita, akan terdapat info seperti berikut:
-![image](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/81a1c0a5-d64e-465a-9d5e-129b32f6e2ed)
-
-Ini menandakan bahwa kita sudah bisa menggunakan protokol MQTT pada flow node-red kita. Selain itu pastikan kolom `host` pada node MQTT sudah kita atur menjadi `localhost` dan portnya menjadi 1883. Seperti gambar berikut:
-![image](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/e75f49fb-9277-403e-83ba-9a8a7ecd9c04)
-
-
-### Kesimpulan
-Untuk menggunakan protokol MQTT pada node-red, kita harus menginstall broker terlebih dahulu, salah satunya adalah Mosquitto. Kemudian untuk menambah publisher, kita bisa menggunakan node `MQTT Out` yang sudah dikonfigurasikan pengaturan brokernya. Dan untuk menambah subscriber, kita bisa menggunakan node `MQTT In` yang juga sudah dikonfigurasikan pengaturan brokernya. Pastikan juga kedua node memiliki topik yang sama agar pesan dapat dikirimkan.
+Program ini mendeteksi suhu di ruang tamu dan mengirimkannya melalui MQTT ke topik "livingroom/sensors" dan kemudian akan ditampilkan pada konsol debug.
