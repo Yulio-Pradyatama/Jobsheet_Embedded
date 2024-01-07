@@ -20,24 +20,14 @@ Node :
 
 ### Flowchart
 
-![Flowchart Job 5-C](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/78ebac3e-bcd2-4586-ba8d-24e11a950022)
+![Flowchart Job 5-C](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/2a26a24e-40fb-4037-b618-1ee982f6efac)
 
 ### Hasil dan Pembahasan
 
-![Job 5-C](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/563102b4-0adf-4fb9-835f-bb0deede2f82)
+![Job 5-C](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/1bee3c26-df9b-4c32-a351-d7bd40a711ab)
 
-Berbeda dengan node `function`, untuk memproses data pada node `switch` tidak memerlukan pemrograman sama sekali. Kita hanya menambahkan `action` atau aksi untuk dapat melakukan pemrosesan data. 
+Inject Node memiliki payload dengan isi berupa angka 30 dan 27. Pesan tadi akan dikirimkan ke Switch Node yang berfungsi sebagai percabangan berdasarkan kondisi yang sudah diatur. Dalam Switch Node, pesan dengan angka 30 akan dikirimkan ke Debug Node dengan nama ">28", sedangkan untuk nilai 27 akan dikirimkan ke Debug Node dengan nama "<=28". Kemudian di Debug Node pesan tersebut akan ditampilkan pada konsol debug sesuai dengan kondisi yang sudah di atur di Switch Node.
 
-Ada berbagai macam action yang dapat dilakukan:
+**Kesimpulan**
 
-![image](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/75ceffd6-3f55-4449-94a7-37985edbbae7)
-
-Karena pada percobaan ini kita hanya menentukan apakah jumlah inputan angka melebihi atau kurang dari 28, maka kita hanya menambahkan 2 aksi, yaitu > dan <=. Kemudian kita masukkan angka 28 pada kolom input, dan pastikan tipe data yang dipilih adalah number.
-
-![image](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/77dce191-de5e-4322-9b91-17c04d7be7e6)
-
-Aksi pertama akan meneruskan pesan ke output pertama jika benar, sedangkan apabila yang benar adalah aksi kedua, maka pesan akan diteruskan ke output kedua.
-
-### Kesimpulan
-
-Switch node berfungsi untuk merubah atau memodifikasi pesan atau data agar sesuai dengan apa yang kita inginkan, dimana kita hanya perlu menambahkan aksi saja tanpa perlu melakukan coding atau pemrograman seperti pada function node.
+Penggunaan Switch Node untuk membagi alur berdasarkan nilai payload yang dikirim oleh Inject Node dan fungsi Debug Node untuk menampilkan hasilnya pada konsol debug.
