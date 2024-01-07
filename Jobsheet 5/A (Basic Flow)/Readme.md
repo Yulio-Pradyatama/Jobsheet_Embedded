@@ -19,11 +19,11 @@ Node :
 
 **Flowchart**
 
-![Flowchart Job 5-A](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/789f49dc-6d58-4344-a9ed-2df6101a68d9)
+![Flowchart Job 5-A](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/29937c10-3207-4ae2-9cba-50caa01af562)
 
 **Hasil dan Pembahasan**
 
-![job-5-a](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/0820c8ca-b93e-40af-a2eb-733d6ec3303f)
+![Job 5-A](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/b2f5c23c-3b04-45eb-b8c8-bcc27f12929a)
 
 Pada gambar hasil percobaan terlihat bahwa flow yang dibuat merupakan simulasi sederhana dari suatu proses pengiriman data atau pesan (`msg`), dimana terdapat `Inject Node` yang berfungsi sebagai pengirim data dan `Debug Node` yang berfungsi sebagai penerima data. 
 
