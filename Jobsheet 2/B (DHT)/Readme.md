@@ -11,7 +11,7 @@ Melakukan ujicoba menggunakan sensor suhu dan kelembaban (DHT11) pada ESP32. Ter
 
 ### Skema Rangkaian
 
-![Skematik (Job 2-B)](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/e30b47ab-90eb-41f9-abac-32eeb56e39fc)
+![Skematik (Job 2-B)](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/4a20267c-cff4-4b0c-a5f2-55d833f123a2)
 
 **Program** <a href="https://github.com/cakjung/Jobsheet-Embedded/blob/main/Jobsheet%202/B%20(DHT)/Job%202-B_1/DHT/DHT.ino"> File .ino </a>
 
@@ -19,79 +19,17 @@ Melakukan ujicoba menggunakan sensor suhu dan kelembaban (DHT11) pada ESP32. Ter
 
 ### Flowchart
 
-![Flowchart Job 2-B 1](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/283c6db5-061c-497e-9e2b-f3c79788f5b9)
+![Flowchart Job 2-B 1](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/c238194e-8f7b-487b-9608-e0a9a0ea037c)
 
 ### Hasil dan Pembahasan
 
-![Job-2-B_1](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/6f683db9-0b9e-4e20-b26c-0c7044c0f53b)
+![Job-2-B_1](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/0ffedd7d-f2c3-4748-b388-bdfc541708e9)
 
-Program ini menggunakan sensor DHT11 untuk membaca suhu dan kelembapan. Berikut adalah penjelasan programnya:
+Program ini menggunakan sensor DHT11 yang dipasang di pin digital 4 sebagai variabel input. Program ini digunakan untuk mengukur data kelembapan (`h`), suhu dalam celcius (`t`), dan suhu dalam fahrenheit (`f`). Program akan menghitung indeks panas dalam fahrenheit (`hif`) dan celcius (`hic`) dengan menggunakan metode `computeHeatIndex`. Hasil data-data tadi akan dicetak pada serial monitor dengan memiliki delay 2 detik antara setiap pengukuran. Jika terjadi error pada pembacaan sensor, maka akan muncul pesan teks pada serial monitor.
 
-**A. Inisialisasi Pin dan Tipe Sensor:**
+**Kesimpulan**
 
-```cpp
-#include "DHT.h"
-
-#define DHTPIN 4
-#define DHTTYPE DHT11
-DHT dht(DHTPIN, DHTTYPE);
-```
-   - `DHTPIN` didefinisikan sebagai pin digital (GPIO) yang terhubung ke sensor DHT.
-   - Tipe sensor DHT dipilih dengan mendefinisikan `DHTTYPE`. Untuk contoh ini, dipilih tipe DHT11, tetapi dapat diubah menjadi DHT22 atau DHT21 jika diperlukan.
-   - Menambahkan juga library DHT pada awal program.
-   - Untuk type dari DHT menggunakan DHT11
-
-**B. Setup():**
-
-```cpp
-void setup() {
-  Serial.begin(9600);
-  Serial.println(F("DHT11 Embedded System Test!"));
-  dht.begin();
-}
-```
-   - Komunikasi serial diatur pada baudrate 9600.
-   - Pesan selamat datang ditampilkan di Serial Monitor.
-   - Komunikasi dengan sensor DHT dimulai menggunakan `dht.begin()`.
-
-**C. Loop():**
-
-```cpp
-  delay(2000); // jeda pembacaan data
-  
-  float h = dht.readHumidity();
-  float t = dht.readTemperature();
-  float f = dht.readTemperature(true);
-
-  if (isnan(h) || isnan(t) || isnan(f)) {
-    Serial.println(F("Failed to read from DHT sensor!"));
-    return;
-  }
-
-  float hif = dht.computeHeatIndex(f, h);
-  float hic = dht.computeHeatIndex(t, h, false);
-
-  Serial.print(F("Humidity: "));
-  Serial.print(h);
-  Serial.print(F("%  Temperature: "));
-  Serial.print(t);
-  Serial.print(F("°C "));
-  Serial.print(f);
-  Serial.print(F("°F  Heat index: "));
-  Serial.print(hic);
-  Serial.print(F("°C "));
-  Serial.print(hif);
-  Serial.println(F("°F"));
-```
-   - Terdapat jeda waktu 2 detik (`delay(2000)`) antara pembacaan suhu dan kelembapan.
-   - Pembacaan suhu dan kelembapan dilakukan menggunakan fungsi `dht.readTemperature()` dan `dht.readHumidity()`.
-   - Hasil pembacaan dicek menggunakan `isnan()` untuk memastikan data yang valid, `isnan` merupakan fungsi untuk menentukan apakah variabel tersebut tidak memiliki nilai atau sebaliknya.
-     - Jika `isnan()` bernilai true, maka akan muncul "Failed to read from DHT sensor" pada serial monitor.
-     - Jika `isnan()` bernilai false, maka data akan muncul data kelembaban, suhu, dan heat index pada serial monitor.
-   - Heat index dihitung baik dalam Fahrenheit maupun Celsius menggunakan fungsi `dht.computeHeatIndex()`.
-
-### Kesimpulan
-Sensor DHT11 dapat digunakan untuk mengetahui kondisi suhu (°C) dan kelembapan (%) di lingkungan sekitar serta dapat mengetahui indeks panas ruangan dalam derajat celcius maupun fahrenheit.
+Program ini dibuat untuk mengukur dan menampilkan data suhu, kelembapan, dan indeks panas dari sensor DHT11. Semua data akan dicetak pada serial monitor, begitu pula saat terjadinya error pada sensor akan teridentifikasi.
 
 ## 2. Menyalakan LED dan Buzzer menggunakan DHT11
 
@@ -105,7 +43,7 @@ Sensor DHT11 dapat digunakan untuk mengetahui kondisi suhu (°C) dan kelembapan 
 
 ### Skema Rangkaian
 
-![Skematik (Job 2-B 2)](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/3a8287f0-fbf8-4c6a-86ea-d94865c0a711)
+![Skematik (Job 2-B 2)](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/7d3d66fe-b4a6-48c0-a68b-9a5acb5c6a54)
 
 **Program** <a href="https://github.com/cakjung/Jobsheet-Embedded/blob/main/Jobsheet%202/B%20(DHT)/Job%202-B_2/DHT_BUZZER/DHT_BUZZER.ino"> File .ino </a>
 
@@ -113,73 +51,13 @@ Sensor DHT11 dapat digunakan untuk mengetahui kondisi suhu (°C) dan kelembapan 
 
 ### Flowchart
 
-![Flowchart Job 2-B 2](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/a84a0948-f6fc-49ac-9bd0-f1a2adc69f69)
+![Flowchart Job 2-B 2](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/481d7285-1e30-42a5-ba3e-a3895c673f52)
 
 ### Hasil dan Pembahasan
 
-![Job-2-B_2](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/54530eb5-1dc6-4d1f-aa8a-4841a00f1de7)
+![Job-2-B_2](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/f4e32320-a9cc-4758-9eef-7a4e60622b3a)
+Program ini merupakan hasil pengembangan dari program selanjutnya, dimana terdapat penggunaan LED dan buzzer sebagai variabel output. Program akan membaca sensor suhu DHT dengan menggunakan `dht.readTemperrature()` dan akan mencetak nilai suhu pada serial monitor. Jika nilai suhu melebihi atau sama dengan 30 derajat celcius, maka akan menyalakan LED dan buzzer yang disetting dengan frekuensi 1000Hz selama 100ms (beep). Sebaliknya jika nilai suhu lebih kecil dari 30 derajat celcius, maka LED dan buzzer tidak akan merespon (mati).
 
-Program ini merupakan pengembangan dari percobaan sebelumnya, dimana sensor DHT11 akan digunakan untuk membaca suhu dan kelembapan, dan berdasarkan nilai suhu tertentu, akan mengendalikan LED dan buzzer (alat elektronik yang akan mengeluarkan suara jika diberi tegangan listrik). Berikut adalah pengembangan dari program sebelumnya:
+**Kesimpulan**
 
-**A. Inisialisasi Pin dan Tipe Sensor:**
-
-```cpp
-#include <DHT.h>
-#define DHT_PIN 4   // Pin yang digunakan untuk sensor suhu DHT
-#define LED_PIN 5   // Pin yang digunakan untuk LED Merah
-#define BUZZER_PIN 18 // Pin yang digunakan untuk Buzzer
-
-DHT dht(DHT_PIN, DHT11); // Inisialisasi sensor DHT
-
-```
-   - LED akan dikendalikan oleh pin 5 sedangkan buzzer akan dikendalikan oleh in 18 oleh ESP32.
-   - Pembacaan suhu dan kelembapan menggunakan sensor DHT11 seperti pada program sebelumnya.
-
-**B. Setup():**
-
-```cpp
-void setup() {
-  pinMode(LED_PIN, OUTPUT);     // Mengatur pin LED sebagai OUTPUT
-  pinMode(BUZZER_PIN, OUTPUT); // Mengatur pin Buzzer sebagai OUTPUT
-
-  Serial.begin(9600);
-  dht.begin(); // Memulai sensor DHT
-}
-```
-   - Komunikasi serial diatur pada baudrate 9600.
-   - Inisialisasi LED dan buzzer sebagai output.
-   - Memulai komunikasi dengan sensor DHT.
-
-**C. Loop():**
-
-```cpp
- float temperature = dht.readTemperature(); // Membaca suhu dari sensor DHT
-
-  if (isnan(temperature)) {
-    Serial.println(F("Gagal membaca suhu"));
-    return;
-  }
-
-  Serial.print("Suhu: ");
-  Serial.print(temperature);
-  Serial.println(" °C");
-
-  if (temperature >= 30.0) {
-    digitalWrite(LED_PIN, HIGH);     // Menyalakan LED Merah
-    tone(BUZZER_PIN, 1000, 100);      // Memainkan nada dengan frekuensi 1000Hz selama 100ms (beep)
-    delay(100); // Memberi jeda agar buzzer bisa berbunyi dengan interval
-  } else {
-    digitalWrite(LED_PIN, LOW); // Mematikan LED Merah
-    noTone(BUZZER_PIN);          // Mematikan Buzzer
-  }
-
-  delay(100);
-```
-   - Pembacaan suhu dan kelembapan dilakukan seperti pada program sebelumnya.
-   - Jika pembacaan suhu gagal, pesan kesalahan akan ditampilkan.
-   - Jika suhu melebihi atau sama dengan 30°C, maka lampu LED dan buzzer akan menyala.
-   - Jika suhu dibawah 30°C, maka lampu LED dan buzzer akan mati.
-
-### Kesimpulan
-
-Sensor DHT11 juga dapat dikembangkan agar dapat mengkontrol LED dan buzzer.
+Dengan menggunakan sensor DHT11 dan modul ESP32 dapat membuat mekanisme pendeteksi kebakaran yang memiliki output respon LED dan buzzer.
