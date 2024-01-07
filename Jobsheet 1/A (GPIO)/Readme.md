@@ -13,7 +13,7 @@ Percobaan ini ditujukan agar dapat memahami penggunaan pin GPIO pada ESP32. Terd
 
 **Skema Rangkaian**
 
-![Skematik (Job 1-A)](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/66c26000-428d-4d83-95aa-9acc5118c28d)
+![Skematik (Job 1-A)](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/19bba8ae-ba03-437e-9c34-4b071b8749a3)
 
 **Program** <a href="https://github.com/cakjung/Jobsheet-Embedded/tree/main/Jobsheet%201/A%20(GPIO)/1._Langkah_2.ino/1._Langkah_2.ino.ino">(File .ino)</a>
 
@@ -21,12 +21,11 @@ Percobaan ini ditujukan agar dapat memahami penggunaan pin GPIO pada ESP32. Terd
 
 **Flowchart**
 
-![Flowchart Job1 A-2](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/cde437ea-2f4a-4ac4-a70b-d957d6386fb9)
-
+![Flowchart Job1 A-2](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/d5131b0f-2f0e-4d8d-affa-30907a45a79d)
 
 **Hasil dan Pembahasan**
 
-![Job 1A_2](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/f2d83b66-ab0b-4652-923e-cf0927875a22)
+![Job 1A_2](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/ffe26eac-7e17-490a-8611-9d934e4e4355)
 
 Program ini dibuat untuk menghasilkan lampu LED berkedip setiap 1 detik.Untuk mengatur kedipan LED memerlukan penggunaan variabel yang membuat tindakan yang terkait dengan waktu, seperti:
 
@@ -51,7 +50,7 @@ Program ini menggunakan variabel dengan fungsi `millis()` dan variabel `interval
 
 **Skema Rangkaian**
 
-![Skematik (Job 1-A)](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/66c26000-428d-4d83-95aa-9acc5118c28d)
+![Skematik (Job 1-A)](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/0eb37a65-8c5a-47e4-8159-11b88f11fef3)
 
 **Program** <a href="https://github.com/cakjung/Jobsheet-Embedded/blob/main/Jobsheet%201/A%20(GPIO)/1._Langkah_3.ino/1._Langkah_3.ino.ino">(File .ino)</a>
 
@@ -60,11 +59,11 @@ Program ini menggunakan variabel dengan fungsi `millis()` dan variabel `interval
 
 **Flowchart**
 
-![Flowchart Job1 A-3](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/8881fd0b-b384-4144-86a7-54ffc5afdbee)
+![Flowchart Job1 A-3](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/3ade36bf-da67-4572-beb4-762fee4e4d9f)
 
 **Hasil dan Pembahasan**
 
-![Job 1A_3](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/26d0fab2-db22-4e74-8843-61296125cf6d)
+![Job 1A_3](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/0b540240-1a83-4d2f-acf9-58f05f451d02)
 
 Program ini menggunakan button sebagai variabel input dan LED sebagai variabel output. Program ini bekerja sesuai dengan nilai `buttonState` saat membaca adanya tindakan pada variabel `buttonPin` (terjadi penekanan pada button), hal itu akan membuat program menjalankan perintah pada kondisi `if()`. Jika nilai `buttonState` sama dengan HIGH (ada penekanan), maka program akan melakukan tindakan pada variabel `ledPin` (menyalakan LED) dan begitu juga sebaliknya. Nilai dari `buttonState` akan dicetak ke Serial Monitor melalui perintah `Serial.println(buttonState)`.
 
@@ -83,7 +82,7 @@ Program ini akan bekerja saat ada penekanan pada tombol button yang akan memberi
 
 **Skema Rangkaian**
 
-![Skematik (Job 1-A 4)](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/e328903d-42a6-41aa-88fd-4aa85b0f4d53)
+![Skematik (Job 1-A 4)](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/94db2d19-d123-4cc5-b552-82e9022976b2)
 
 **Program** <a href="https://github.com/cakjung/Jobsheet-Embedded/blob/main/Jobsheet%201/A%20(GPIO)/1._Langkah_4.ino/1._Langkah_4.ino.ino">(File .ino)</a>
 
@@ -91,11 +90,11 @@ Program ini akan bekerja saat ada penekanan pada tombol button yang akan memberi
 
 **Flowchart**
 
-![Flowchart Job1 A-4](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/babf0559-e508-4dbb-adc7-f2d19848528a)
+![Flowchart Job1 A-4](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/3ce6b592-110c-41be-b105-fbd0afb3fda9)
 
 **Hasil dan Pembahasan**
 
-![Job 1A_4](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/3ec1ab7c-023f-425a-a32d-bdd115286f46)
+![Job 1A_4](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/1dd36927-64e6-4973-b328-9315b3d02b65)
 
 Program ini menggunakan 2 button dan 2 LED, dimana button sebagai variabel input (`buttonPin1` dan `buttonPin2`) dan LED sebagai variabel output (`ledPin1` Kuning dan `ledPin2` Merah). Program ini menghasilkan keluaran 3 kondisi, dimana:
 
@@ -118,7 +117,7 @@ Program ini menghasilkan keluaran kedua LED menyala bersamaan saat button ke 1 d
 
 **Skema Rangkaian**
 
-![Skematik (Job 1-A 5)](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/8491d78c-4a90-47d6-b3db-aebf0a23ed17)
+![Skematik (Job 1-A 5)](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/3bf1381c-2ec5-486e-9f85-84393dd2bbaf)
 
 **Program** <a href="https://github.com/cakjung/Jobsheet-Embedded/blob/main/Jobsheet%201/A%20(GPIO)/1._Langkah_5.ino/1._Langkah_5.ino.ino">(File .ino)</a>
 
@@ -126,11 +125,11 @@ Program ini menghasilkan keluaran kedua LED menyala bersamaan saat button ke 1 d
 
 **Flowchart**
 
-![Flowchart Job1 A-5](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/31e30171-5ef0-4212-a99e-9f98bda54f54)
+![Flowchart Job1 A-5](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/0d3cc857-d58b-41b8-ac1c-e74c75c38106)
 
 **Hasil dan Pembahasan**
 
-![Job 1A_5](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/dba1458c-f8e8-429f-a66c-c3fba2d6dd6d)
+![Job 1A_5](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/6ae289d0-41e9-46e7-9eba-98a0278a4c22)
 
 Program ini menggunakan 3 variabel input dan 3 variabel output, dimana variabel input (`buttonPin1`, `buttonPin2`, dan `buttonPin3`) dan untuk variabel output (`ledPin1`, `ledPin2`, dan `ledPin3`).Program ini menghasilkan keluaran 4 kondisi:
 - LED menyala secara bersamaan, kondisi dimana saat `buttonState1` bernilai HIGH (button 1 ditekan).
