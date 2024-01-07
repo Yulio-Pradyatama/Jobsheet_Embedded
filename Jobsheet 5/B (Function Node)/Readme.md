@@ -21,26 +21,20 @@ Node :
 
 **Flowchart**
 
-![Flowchart Job 5-B1](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/755d0e08-41a3-48ab-a053-d1345c196605)
+![Flowchart Job 5-B1](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/89f767d6-b05a-488e-8623-f829f7bb33c3)
 
 **Hasil dan Pembahasan**
 
-![Job 5-B1](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/bce225ab-62e6-4734-89e7-c0d8898fe88a)
+![Job 5-B1](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/1f54e6ea-3dc4-4b2b-92e8-43eeb30415c0)
 
-Simulasi ini merupakan pengembangan dari flow sebelumnya, dimana terdapat penampahan 1 buah `function` node. Node function ini memungkinkan kita agar dapat memodifikasi data sesuai apa yang kita inginkan, seperti:
-- Memproses data, node ini dapat memproses data yang diterima dari input node dan mengirimkan data yang sudah diproses ke output node
-- Mengubah data, data yang diubah dapat berupa format pesan atau tipe data dari pesan
-- Mengambil data, jadi node dapat berfungsi untuk mengambil data dari suatu sumber (misalnya database).
-
-Node ini menggunakan bahasa javascript sebagai bahasa pemrogramannya.
-
-![image](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/d4ee6a0d-df73-4de5-b0c8-6319c7c05c95)
-
-Pada percobaan ini, tidak ada proses tambahan yang dilakukan didalam node `function`. Jadi hasilnya akan seperti percobaan sebelumnya, yang hanya berupa input node dan output node.
+Program Node-RED ini memiliki alur kerja sebagai berkut:
+- Inject Node akan mengirimkan pesan dengan topik `test1` dan pesan payload `Hello World`.
+- Function Node sebagai perantara untuk meneruskan pesan dari Inject Node ke Debug.
+- Debug Node akan menampilkan pesan dari Inject Node ke konsol debug.
 
 **Kesimpulan**
 
-Function node berfungsi untuk merubah atau memodifikasi pesan atau data agar sesuai dengan apa yang kita inginkan, tentunya dengan cara memprogramnya dengan bahasa `Javascript`.
+Program ini berguna untuk memberikan pemahaman mengenai Node-RED yang dapat membuat alur kerja yang terdiri dari penerimaan, pemrosesan, dan penampilan data.
 
 ## 2. Memprogram Function Node
 **Alat dan Bahan**
@@ -62,47 +56,20 @@ Node :
 
 **Flowchart**
 
-![Flowchart Job 5-B2](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/61172a70-6825-4903-ad76-44c2819f4f9a)
+![Flowchart Job 5-B2](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/8080d230-13e5-4543-a2df-8dd8c040f05f)
 
 **Hasil dan Pembahasan**
 
-![Job 5-B2](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/a9ef2a2c-ef72-45e0-8577-145b8b85b29b)
+![Job 5-B2](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/2a666e97-a35d-43a3-8607-c5e62731f4bb)
 
-Simulasi ini merupakan pengembangan dari flow sebelumnya, dimana terdapat penampahan 2 buah `inject` dan `debug` node. Tujuan utamanya adalah bagaimana caranya data dari `Input 1` ditampilkan pada `Output 1`, dan data dari `Input 2` ditampilkan pada `Output 2`. Untuk itu, kita perlu memodifikasi function node agar dapat memproses data-data yang akan dilewatkan. 
+Program ini memiliki 2 Inject Node, 1 Function Node, dan 2 Debug Node. Dimana isi dari konfigurasi Inject Node :
+- `Input1` mengirimkan pesan dengan topik `test1` dan payload `Hello World`.
+- `Input2` mengirimkan pesan dengan topik `test2` dan payload `Expeliarmus`.
 
-**Isi node `Fungsi`**
-```javascript
-var topic = msg.topic;
-if(topic == 'test1') {
-    return [msg,null];
-}
-else if (topic == 'test2') {
-    return [null,msg];
-}
-return msg;
-```
+Function Node akan menerima kedua pesan dari Inject Node dan akan mengirimkan kedua pesan tadi ke Debug Node sesuai dengan nilai topik yang sudah di atur di Inject Node, yaitu topik `test1` akan diarahkan ke `outpu1` dan begitu juga dengan topik `test2` akan diarahkan ke `output2`.
 
-**1. Membuat variabel baru** 
-```javascript
-var topic = msg.topic;
-```
-kode ini digunakan untuk mempermudah pemanggilan msg.topic dengan cara menyamakan nilainya.
-
-**2. Menentukan Arah Pesan**
-```js
-if(topic == 'test1') {
-    return [msg,null];
-}
-else if (topic == 'test2') {
-    return [null,msg];
-}
-```
-Array yang terdapat pada kode merupakan nilai output dari function node, pada gambar hasil percobaan juga sudah terlihat bahwa terdapat 2 output pada function node.
-
-![image](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/95e14b95-66bd-45e1-b826-4b0b2067c637)
-
-Nilai pertama dari array merupakan `Output pertama`, maka nilai selanjutnya yang ada dalam array juga merupakan output selanjutnya. Isi dari node `Fungsi` menyatakan bahwa jika topik pesan bernilai `test1`, maka teruskan pesan ke output pertama. Selain itu, jika topik pesan bernilai `test2`, maka teruskan pesan ke output kedua.
+Pada Debug Node, `output1` akan menampilkan pesan berisi "Hello World" dan `output2` akan menampilkan pesan yang berisi "Expeliarmus".
 
 **Kesimpulan**
 
-Function node terbukti dapat digunakan sebagai filter pesan atau data, pesan yang melewati function akan diproses dan hasilnya akan diteruskan ke tujuan (node) selanjutnya.
+Program ini dapat memberikan pemahaman bahwa penggunaan Node-RED dapat mengarahkan pesan berdasarkan nilai topik yang sudah diatur.
