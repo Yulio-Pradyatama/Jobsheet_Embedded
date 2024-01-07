@@ -69,7 +69,7 @@ nilai sentuh pada pin GPIO 4 akan menjadi nilai `touchValue` yang akan dicetak k
 
 ### Skema Rangkaian
 
-![image](https://github.com/alfan459/Embedded-System/assets/54757609/f172e71d-7663-476e-b929-b32ce02d00b5)
+![Skematik (Job 2-A)](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/c84be0e7-606b-46a3-b156-778d0e76160e)
 
 **Program** <a href="https://github.com/cakjung/Jobsheet-Embedded/blob/main/Jobsheet%202/A%20(Capacitive%20Touch%20Sensor)/Job%202-A_3/Capacitive_Touch_Sensor_Blink/Capacitive_Touch_Sensor_Blink.ino"> File .ino </a>
 
@@ -99,7 +99,7 @@ Program ini memiliki respon yang cepat, dikarenakan memiliki nilai acuan sentuh 
 
 ### Skema Rangkaian
 
-![image](https://github.com/alfan459/Embedded-System/assets/54757609/f172e71d-7663-476e-b929-b32ce02d00b5)
+![Skematik (Job 2-A)](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/c84be0e7-606b-46a3-b156-778d0e76160e)
 
 **Program** <a href="https://github.com/cakjung/Jobsheet-Embedded/blob/main/Jobsheet%202/A%20(Capacitive%20Touch%20Sensor)/Job%202-A_4/Capacitive_Touch_Sensor_disentuh_bertambah/Capacitive_Touch_Sensor_disentuh_bertambah.ino"> File .ino </a>
 
