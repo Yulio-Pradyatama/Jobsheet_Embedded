@@ -23,31 +23,11 @@ Melakukan ujicoba kontrol LED pada ESP32 menggunakan input berupa sentuhan. Terd
 
 ![Job-2-A_1](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/00dd0ecd-e43b-4f3e-909d-f6e0fc4cb13c)
 
-Program ini adalah contoh penggunaan fitur *touch* pada ESP32. Fitur ini memungkinkan ESP32 membaca nilai dari sensor sentuh yang terhubung ke pin tertentu. Fungsi yang digunakan untuk membuat sensor ini adalah `touchRead()`. Nilai input tersebut akan ditampilkan pada Serial Monitor. Berikut analisis singkat dari program:
+Program ini dibuat untuk menguji kemampuan sentuhan pada pin sentuh yang terletak di GPIO 4. Cara kerja program, nilai dari pin sentuh yang dibaca dengan fungsi `touchRead(4)` akan ditampilkan ke serial monitor menggunakan `Serial.println` dengan delay baca selama 1 detik. Nilai yang ditampilkan merupakan nilai analog yang memiliki kisaran dari 0 sampai 4095, dimana 4095 menunjukan nilai sentuhan maksimum.
 
-**A. Setup Komunikasi Serial:**
+**Kesimpulan**
 
-```cpp
-Serial.begin(115200); // komunikasi ini akan digunakan untuk membaca data lewat `serial monitor`
-delay(1000);
-```
-   - Baudrate serial diatur pada 115200 bps.
-   - Terdapat delay sebesar 1000 ms untuk memberikan waktu ESP32 untuk stabil.
-
-**B. Loop:**
-
-```cpp
-Serial.println(touchRead(4));
-delay(1000);
-```
-   - Pada setiap iterasi, nilai dari input berupa sentuhan yang terhubung ke pin GPIO 4 dibaca menggunakan fungsi `touchRead(4)`.
-   - Nilai tersebut kemudian ditampilkan melalui Serial Monitor.
-   - Terdapat delay 1000 ms untuk memberikan interval waktu antar pembacaan.
-
-Jika tidak terdapat input yang terbaca, maka garis pada grafik akan naik. Sedangkan jika terdapat sentuhan, maka garis akan turun ke level tertentu. Fungsi touchRead() sendiri memiliki nilai analog yang berkisar antara 0 hingga 1023. Angka tersebut akan direpresentasikan sesuai dengan grafik pada serial monitor.
-
-### Kesimpulan
-Variasi nilai yang ditampilkan menunjukkan level sentuhan pada sensor. Perlu dipahami bahwa nilai yang dibaca dari sensor sentuh bersifat relatif dan dapat bervariasi, hal ini bisa disebabkan oleh faktor lingkungan atau alat dan komponen yang digunakan.
+Nilai sentuh akan terbaca dengan rentang dari 0 sampai 4095, sesuai tingkat sentuhan. Semakin tinggi tingkat sentuhan, maka semakin tinggi nilai yang terbaca oleh pin GPIO 4 dan akan ditampilkan pada serial monitor.
 
 ## 2. Menyalakan LED dengan sensor sentuh
 
@@ -73,49 +53,11 @@ Variasi nilai yang ditampilkan menunjukkan level sentuhan pada sensor. Perlu dip
 
 ![Job-2-A_2](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/176d258e-1789-458f-9c60-0adb591cf1d3)
 
-Percobaan ini adalah pengembangan dari percobaan sebelumnya, dimana nilai inputan sensor sentuh dimanfaatkan untuk menyalakan atau mematikan LED. Berikut analisis singkat dari program yang digunakan:
+Program ini merupakan perkembangan sebelumnya, dimana pada program ini menggunakan LED yang dipasang pada pin 16 (`ledPin`). Nilai sentuhan dari pin GPIO 4 akan terbaca menggunakan `touchRead` dan nilai tersebut akan menjadi nilai `touchValue` yang akan ditampilkan pada serial monitor dengan memiliki delay cetak setiap 0,5 detik. Jika mengalami sentuhan, nilai `ledPin` menjadi HIGH (dinyalakan) dan begitu juga sebaliknya jika tidak ada sentuhan, nilai `ledPin` akan menjadi LOW (mati).
 
-**A. Pengaturan Pin:**
+**Kesimpulan**
 
-```cpp
-const int touchPin = 4;
-const int ledPin = 16;
-```
-   - `touchPin` diatur ke GPIO4, yang merupakan pin sensor sentuh.
-   - `ledPin` diatur ke GPIO16, yang merupakan pin untuk mengendalikan LED.
-
-**B. Setup():**
-
-```cpp
-pinMode(ledPin, OUTPUT);
-Serial.begin(115200);
-delay(1000);
-```
-   - `ledPin` diinisialisasi sebagai output.
-   - Komunikasi serial diatur pada baudrate 115200.
-   - Terdapat delay awal 1000 ms untuk memastikan kestabilan ESP32.
-
-**C. Loop():**
-
-```cpp
-touchValue = touchRead(touchPin); // memasukkan nilai input (sentuhan) ke variabel baru
-Serial.print(touchValue);
-delay(500);
-
-if (touchValue == 0) {
-  digitalWrite (ledPin, HIGH);
-} else {
-  digitalWrite (ledPin, LOW);
-}
-delay(1000);
-```
-   - Nilai dari sensor sentuh (`touchValue`) dibaca menggunakan fungsi `touchRead(touchPin)`.
-   - Nilai tersebut ditampilkan pada Serial Monitor.
-   - Jika sensor sentuh mendeteksi sentuhan (nilai sama dengan 0), maka LED akan menyala.
-   - Jika sensor sentuh tidak mendeteksi sentuhan (nilai tidak sama dengan 0), maka LED akan mati.
-
-### Kesimpulan
-Untuk menyalakan LED dibutuhkan nilai acuan untuk penanda dimana LED akan menyala dan LED akan mati. Karena fungsi dari touchread sendiri memiliki nilai analog (0 - 1023).
+nilai sentuh pada pin GPIO 4 akan menjadi nilai `touchValue` yang akan dicetak ke serial monitor dan nilai ini akan menjadi nilai output untuk memberikan respon pada LED yang terpasang pada pin 16.
 
 ## 3. Membuat Blink LED dengan sensor sentuh
 
@@ -141,52 +83,11 @@ Untuk menyalakan LED dibutuhkan nilai acuan untuk penanda dimana LED akan menyal
 
 ![Job-2-A_3](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/493fea73-d2a5-411c-ad73-985dc987927c)
 
-Percobaan ini adalah pengembangan dari percobaan sebelumnya, dimana nilai inputan sensor sentuh dimanfaatkan untuk menyalakan LED (Blink) atau mematikan LED. Berikut analisis singkat dari program yang digunakan:
+Program ini memiliki variabel input (`touchPin`) yang dipasang pada pin GPIO 4 dan memiliki variabel output (`ledPin`) yang dipasang pada pin 16. Cara kerja program ini, nilai sentuh akan dicetak ke srial monitor setiap 0,5 detik dengan menggunakan `touchRead(4)`. Jika nilai sentuh tersebut kurang dari atau sama dengan 30, maka akan memberikan respon pada LED dengan durasi nyala selama 1 detik dan akan kembali mati setelah 1 detik. Pada program ini terdapat juga fungsi `delay()` untuk memberikan jeda sebelum iterasi berikutnya dimulai.
 
-**A. Pengaturan Pin:**
-
-```cpp
-const int touchPin = 4;
-const int ledPin = 16;
-```
-   - `touchPin` diatur ke GPIO4, yang merupakan pin sensor sentuh.
-   - `ledPin` diatur ke GPIO16, yang merupakan pin untuk mengendalikan LED.
-
-**B. Setup():**
-
-```cpp
-pinMode(ledPin, OUTPUT);
-Serial.begin(115200);
-delay(1000);
-```
-   - `ledPin` diinisialisasi sebagai output.
-   - Komunikasi serial diatur pada baudrate 115200.
-   - Terdapat delay awal 1000 ms untuk memastikan kestabilan ESP32.
-
-**C. Loop():**
-
-```cpp
-touchValue = touchRead(touchPin); // memasukkan nilai input (sentuhan) ke variabel baru
-Serial.print(touchValue);
-delay(500);
-
-if (touchValue <= 30) {
-  digitalWrite (ledPin, HIGH);
-  delay(1000);
-  digitalWrite (ledPin, LOW);
-  delay(1000);
-} else {
-  digitalWrite (ledPin, LOW);
-}
-delay(1000);
-```
-   - Nilai dari sensor sentuh (`touchValue`) dibaca menggunakan fungsi `touchRead(touchPin)`.
-   - Nilai tersebut ditampilkan pada Serial Monitor.
-   - Jika sensor sentuh mendeteksi sentuhan (nilai kurang dari sama dengan 30), maka LED akan menyala (Blink).
-   - Jika sensor sentuh tidak mendeteksi sentuhan (nilai lebih dari 30), maka LED akan mati.
-
-### Kesimpulan
-Berbeda dengan program sebelumnya, program kali ini lebih sensitif. Hal ini disebabkan nilai acuannya ditingkatkan menjadi 30 (analog), sehingga pembacaan sentuhan pada sensor akan lebih akurat dan cepat.
+**Kesimpulan**
+ 
+Program ini memiliki respon yang cepat, dikarenakan memiliki nilai acuan sentuh dibawah kurang dari atau sama dengan 30 untuk memberikan respon pada LED.
 
 ## 4. Menghitung jumlah sentuhan
 
@@ -212,55 +113,15 @@ Berbeda dengan program sebelumnya, program kali ini lebih sensitif. Hal ini dise
 
 ![Job-2-A_4](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/84294871-20f8-4c7f-ac81-aa0a3085b327)
 
-Percobaan ini adalah pengembangan dari percobaan sebelumnya, dimana nilai inputan sensor sentuh dimanfaatkan untuk menampilkan jumlah sentuhan pada layar serial monitor. Untuk itu terdapat beberapa perubahan pada program, berikut analisis singkat dari program yang digunakan:
+Program ini memiliki cara kerja:
 
-**A. Pengaturan Pin:**
+- program akan memeriksa apakah nilai yang terbaca dari sensor sentuhan memiliki nilai kurang dari atau sama dengan 30. Jika iya, maka nilai `touchValue` akan bertambah satu dan program akan memberikan respon pada LED yang akan dinyalakan selama 1 detik dan kemudian akan dimatikan kembali.
+- nilai `touchValue` akan dicetak pada serial monitor setiap 0,5 detik.
+- LED akan tetap mati, jika tidak ada sentuhan pada sensor sentuh.
 
-```cpp
-const int ledPin = 16;
-const int touchPin = 4;
-int touchValue = 0; 
-```
-   - `touchPin` diatur ke GPIO4, yang merupakan pin sensor sentuh.
-   - `ledPin` diatur ke GPIO16, yang merupakan pin untuk mengendalikan LED.
-   - `touchValue` digunakan sebagai variabel untuk menghitung atau *Counter* jumlah sentuhan.
+**Kesimpulan**
 
-**B. Setup():**
-
-```cpp
-pinMode(ledPin, OUTPUT);
-Serial.begin(115200);
-```
-   - `ledPin` diinisialisasi sebagai output.
-   - Komunikasi serial diatur pada baudrate 115200.
-
-**C. Loop():**
-
-```cpp
-touchValue = touchRead(touchPin); // memasukkan nilai input (sentuhan) ke variabel baru
-Serial.print(touchValue);
-delay(500);
-
-if (touchRead(touchPin) <= 30) {
-    touchValue++; // Menambah touchValue ketika sensor disentuh
-    digitalWrite(ledPin, HIGH); // Nyalakan LED ketika sensor disentuh
-    delay(1000); // Tahan LED selama 1 detik
-    digitalWrite(ledPin, LOW); // Matikan LED
-    delay(1000); // Tunggu selama 1 detik
-  }
-
-  Serial.println("jumlah sentuhan = " + String(touchValue)); // Tampilkan touchValue di Serial Monitor
-  delay(500);
-```
-   - Jika sensor sentuh (`touchPin`) mendeteksi sentuhan, maka program akan melakukan beberapa tindakan:
-     - Menambah nilai `touchValue` sebanyak 1.
-     - Menyalakan LED (`ledPin`).
-     - Menampilkan informasi sentuhan ke Serial Monitor.
-     - Menunggu 500 ms untuk menghindari deteksi berulang.
-   - Jika sensor sentuh tidak mendeteksi sentuhan, maka LED dimatikan.
-     
-### Kesimpulan
-Untuk menambahkan sebuah nilai variable dapat dilakukan dengan increment (++), salah satu contoh pemanfaatannya adalah pada program *Counter*
+nilai `touchValue` akan selalu bertambah satu karena terdapat program counter `touchValue++`.
 
 ## 5. Menyalakan running LED dengan sentuhan
 
@@ -286,64 +147,8 @@ Untuk menambahkan sebuah nilai variable dapat dilakukan dengan increment (++), s
 
 ![Job-2-A_5](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/14dbfb6f-f935-42c5-8eb1-2c887cab333b)
 
-Percobaan ini adalah pengembangan dari percobaan sebelumnya, dimana nilai inputan sensor sentuh dimanfaatkan untuk menyalakan LED (Running) atau mematikan LED. Berikut analisis singkat dari program yang digunakan:
+Program ini menggunakan 3 LED yang dipasang pada pin 16,17,dan 18. Ketiga pin tersebut diatur sebagai output melalui perintah `pinMode`. Terdapat variabel array `pinLED` yang di dalamnya terdapat ketiga pin LED yang memungkinkan program dapat mengontrol ketiga LED secara bersamaan. Program akan menghasilkan respon LED menyala bergantian dengan waktu interval 0,5 detik, jika nilai sentuhan dari `touchPin` yang dibaca menggunakan fungsi `touchRead` kurang dari atau sama dengan 30. Hal itu juga akan menambah nilai `touchValue` yang akan dicetak pada serial monitor setiap 0,5 detik. Sedangkan saat nilai sentuh lebih dari 30, maka semua LED akan tetap mati.
 
-**A. Pengaturan Pin:**
+**Kesimpulan**
 
-```cpp
-const int ledPin = 16;
-const int ledPin1 = 18;
-const int ledPin2 = 19;
-const int touchPin = 4;
-const int numLED = 3;
-const int pinLED[numLED] = {16,18,19};
-int touchValue = 0;
-```
-   - `touchPin` diatur ke GPIO4, yang merupakan pin sensor sentuh.
-   - `ledPin` diatur ke GPIO16, 18, dan 19, yang merupakan pin untuk mengendalikan LED 1, 2, dan 3.
-   - 'pinLed' digunakan untuk menambahkan ketiga LED kedalam sebuah array.
-
-**B. Setup():**
-
-```cpp
-Serial.begin(115200);
-  pinMode(ledPin, OUTPUT);
-  pinMode(ledPin1, OUTPUT); // LED kedua
-  pinMode(ledPin2, OUTPUT); // LED ketiga
-  for(int i=0; i<3; i++){
-   pinMode(pinLED[i], OUTPUT);
-  }
-```
-   - `ledPin` dan 'pinLED' diinisialisasi sebagai output.
-   - Komunikasi serial diatur pada baudrate 115200.
-
-**C. Loop():**
-
-```cpp
-if (touchRead(touchPin) <= 30) {
-    touchValue++; // Menambah touchValue ketika sensor disentuh
-    for (int i = 0; i < 3; i++) { // pengulangan tindakan pada ketiga LED
-      digitalWrite(pinLED[i], HIGH);
-      delay(500);
-      digitalWrite(pinLED[i], LOW);
-    }
-  } else {
-    // matikan LED
-    digitalWrite(ledPin, LOW);
-    digitalWrite(ledPin1, LOW);
-    digitalWrite(ledPin2, LOW);
-  }
-
-  Serial.println("jumlah sentuhan = " + String(touchValue)); // Tampilkan touchValue di Serial Monitor
-  delay(500);
-```
-   - Jika sensor sentuh (`touchPin`) mendeteksi sentuhan, maka program akan melakukan beberapa tindakan:
-     - Melakukan looping for untuk menyalakan LED (Running):
-       - Ketika nilai i = 0 (iterasi for pertama), menyalakan dan mematikan LED pertama.
-       - Ketika nilai i = 1 (iterasi for kedua), menyalakan dan mematikan LED kedua.
-       - Ketika nilai i = 2 (iterasi for ketiga), menyalakan dan mematikan LED ketiga.
-   - Jika sensor sentuh tidak mendeteksi sentuhan, maka semua LED tidak akan menyala.
-   - Menampilkan jumlah sentuhan terbaru (jika ada)
-
-### Kesimpulan
-Selain diimplementasikan untuk membuat blink LED, touchRead() juga dapat dikembangkan untuk membuat rangkaian running LED.
+Adanya variabel array membuat program dapat mengontrol ketiga LED secara bersamaan, sehingga dapat memberikan respon LED menyala secara bergantian atau running.
