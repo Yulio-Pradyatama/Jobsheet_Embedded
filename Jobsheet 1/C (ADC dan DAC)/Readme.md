@@ -12,7 +12,7 @@ Terdapat 2 percobaan yang dilakukan :
 
 **Skema Rangkaian**
 
-![Skematik (Job 1-C)](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/7f9644af-a182-4c4d-9342-5185195e2aa0)
+![Skematik (Job 1-C)](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/a1b81e08-e3c7-4359-b14e-d9b68908242d)
 
 **Program** <a href="https://github.com/cakjung/Jobsheet-Embedded/blob/main/Jobsheet%201/C%20(ADC%20dan%20DAC)/ADC/ADC.ino">(File .ino)</a>
 
@@ -20,11 +20,11 @@ Terdapat 2 percobaan yang dilakukan :
 
 **Flowchart**
 
-![Flowchart Job1 C-1 (ADC)](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/51acfee7-a9c2-4aea-8c64-42fd590c8b07)
+![Flowchart Job1 C-1 (ADC)](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/c44c0102-e0db-4515-b104-6ce64b8893bf)
 
 **Hasil dan Pembahasan**
 
-![Job 1C_1](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/81a36f2f-6bc4-470b-9d09-ecd7f8394ac6)
+![Job 1C_1](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/6d973f93-6083-454d-8db4-2e9659e882db)
 
 Program ini menggunakan potensiometer yang dipasang pada pin 34. Nantinya program ini akan menampilkan nilai yang terbaca pada potensiometer untuk ditampilkan ke serial monitor dengan menggunakan perintah `serial.println(potValue)` dengan perubahan nilai setiap 0,5 detik.
 
@@ -43,7 +43,7 @@ Program ini menampilkan pembacaan nilai Analog pada potensiometer dan menampilka
 
 **Skema Rangkaian**
 
-![Skematik Job1 C-2](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/2820baf8-2f7b-46d5-9df4-b327fdeda1b6)
+![Skematik Job1 C-2](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/ace8183d-017a-4aa6-9d1e-6aa3c1171ab3)
 
 **Program** <a href="https://github.com/cakjung/Jobsheet-Embedded/blob/main/Jobsheet%201/C%20(ADC%20dan%20DAC)/DAC/DAC.ino">(File .ino)</a>
 
@@ -51,11 +51,11 @@ Program ini menampilkan pembacaan nilai Analog pada potensiometer dan menampilka
 
 **Flowchart**
 
-![Flowchart Job1 C-2 (DAC)](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/8eabc82c-2dae-42aa-b787-e7a60458ef52)
+![Flowchart Job1 C-2 (DAC)](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/0dadc48c-f76b-496a-8775-bc5fec8ea184)
 
 **Hasil dan Pembahasan**
 
-![Job 1C_2](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/9c818812-d3b9-47f3-b0bd-38ac9e3e75c0)
+![Job 1C_2](https://github.com/Yulio-Pradyatama/Jobsheet_Embedded/assets/153850000/f2ff1c2c-378b-4efb-988a-086ab8b5a073)
 
 Program ini memiliki cara kerja:
 - Nilai analog yng terbaca dari potensiometer akan disimpan dalam variabel `sensorValue`.
