@@ -33,7 +33,7 @@ Node :
 
 ### Flowchart
 
-![Flowchart Job 7-Project](https://github.com/cakjung/Jobsheet-Embedded/assets/128274951/305b9f56-20a5-4a8c-b23a-cc69c09ac046)
+![Flowchart Job 7-Project]https://github.com/Yulio Pradyatama/Jobsheet_Embedded/blob/master/Jobsheet%207/D%20(Project)/flows%20(job%207%20project).json
 
 ### Hasil dan Pembahasan
 Tujuan dari project jobsheet 7 ini adalah untuk membandingkan kecepatan transmisi antara protokol MQTT dan HTTP. Untuk itu saya menambahkan flow program pada Project jobsheet 6 untuk dibandingkan dengan flow program jobsheet 7 C yang sudah saya buat sebelumnya. Terdapat beberapa node dan program yang baru, imbas dari penggabungan flow program. Berikut adalah pengembangan dari flow program:
